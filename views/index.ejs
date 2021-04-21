@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Login</title>
+</head>
+
+<body id="login">
+    
+        <div class="overlay">
+            <!-- ================================spinner============================== -->
+            <div class="parent-spinner">
+                <div class="spinner">
+                    <div class=" double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+            </div>
+            <!-- ================================/spinner============================== -->
+
+            <!-- ======================login form================================= -->
+
+            <div class="container pt-5">
+                <% if (emailNotRegisterd.length) { %>
+                    <div class="alert alert-danger text-center" role="alert">
+                        Email is not registerd
+                      </div>
+                <% } %>
+
+
+                <% if (password.length) { %>
+                    <div class="alert alert-danger text-center" role="alert">
+                        password is not exists
+                      </div>
+                <% } %>
+                <div class="row">
+                    <div class="col-md-6 m-auto p-5">
+                        <div class="form p-5 ">
+                    <h2 class="text-center text-white">Sign In</h2>
+
+                            <form action="/home" method='POST'>
+                                <input placeholder="Email"  value='<%=emailSignin%>' name='email' type="email" class="form-control my-4 inp col-s-12 col-md-12" type="text">
+                                <input placeholder="Password"  name='password' type="password" class="form-control my-4 inp col-s-12 col-md-12" type="text">
+                                <button type='submit' class="btn btn-outline-info w-100 text-white">Login</button>
+                                <p class="text-center text-white pt-3">
+                                    Don't Have an account..?  <a href="/registration" class="text-white" >Sign Up Here</a>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    
+
+
+<%- include('share/footer')%>

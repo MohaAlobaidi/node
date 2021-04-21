@@ -1,0 +1,108 @@
+<%- include('share/headerWithNavbar')  %> 
+    <div class="cover">
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+          
+            <% for( let index = 0; index < userNotes.length; index++ ) { %>
+                <div class="col-md-4 ">
+                    <div class="person card pb-5 px-5  text-center">
+                        <img src="images/man.jpg" width="250" alt="">
+                    </div>
+                </div>
+                <div class="col-md-8 pt-4">
+                    <h2><%= userNotes[index].userID.firstName %></h2>
+                    <h4 class="text-muted">Full Stack Web</h4>
+    
+                    <div class="post card p-4 auto">
+                        <div class="media">
+                            <img src="images/man.jpg" width="60" class="mr-3" alt="...">
+                            <div class="media-body">
+                                <h5  class="mt-0"> <%= userNotes[index].userID.firstName %> </h5>
+                                3 min.
+                            </div>
+                        </div>
+                        <hr>
+                        <h3 id='titleWantToEditID<%=userNotes[index]._id %>'> <%=userNotes[index].title %> </h3>
+                        <p id='descWantToEditID<%=userNotes[index]._id %>' class="pt-4"> <%=userNotes[index].desc %>  </p>
+                       
+                        <div class='d-flex justify-content-end'>
+                            <a class='btn btn-info mr-1' onclick='editPost("<%= userNotes[index]._id %>")' data-toggle="modal" data-target="#editModal">Edite</a>
+                            <a class='btn btn-danger' onclick='deletePost("<%= userNotes[index]._id %>")' data-toggle="modal" data-target="#deleteModal"  >Delete</a>
+                        </div>
+
+
+                    </div>
+                
+                </div>
+            
+                <% } %>
+
+
+        </div>
+    </div>
+
+    <!--======== edit post ==========-->
+
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="/editPost" method='POST'>
+                <input name='editNameAttribute' id='editID'/>
+            <div class="modal-content">
+                <div class="modal-header text-center text-white">
+                    <h5 class="modal-title " id="exampleModalLabel">Post a text</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="text-white" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                        <input  id='editTitle' name="title"  class="form-control my-3" placeholder="Enter Title" type="text">
+                        <textarea  id='editDesc'  name="desc"  class="form-control" placeholder="Enter Text" name="" id="" cols="30"
+                            rows="10"></textarea>
+                
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-info">Edit</button>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+<!-- ============= are you sure to delete modal  -->
+  <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+     <form method="POST" action="/delete">
+         <input hidden id='deleteID' name='deleteNameAttribute'>
+        <div class="modal-header bg-danger text-center text-white">
+          <h5 class="modal-title " id="exampleModalLabel">  Are you sure </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Will delete it !</br>
+         ! سيتم حذف المقال 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+
+    <%- include('share/footer')  %> 

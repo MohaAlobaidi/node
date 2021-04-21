@@ -1,0 +1,29 @@
+<%- include('share/headerWithNavbar')  %> 
+
+<div class="container mt-5 pt-5">
+
+    <% if (oldPass.length) { %>
+        <div class="alert alert-danger text-center" role="alert">
+            <%= oldPass[0] %> 
+        </div>
+    <% } %>
+
+  <div class="row">
+      <div class="col-md-8 m-auto card p-5">
+          <div class="">
+              <h3>Account Setting</h3>
+              <hr>
+            
+              <form action="/AccountSetting" method='post'>
+                  <input type='password' name='oldPassword' placeholder="Enter Old Password" type="text" class="form-control my-2">
+                  <input type='password' name='newPassword' placeholder="New Password" type="text" class="form-control my-2">
+                  <input type='password' name='repeatPassword' placeholder="Repeat Password" type="text" class="form-control my-2">
+                  <button type='submit' class="btn btn-info mt-3">Save Setting</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<%- include('share/footer')%>
